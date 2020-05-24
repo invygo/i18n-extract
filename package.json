@@ -1,6 +1,6 @@
 {
   "name": "i18n-extract-custom",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Manage localization of ES6 code with static analysis",
   "main": "lib/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "test:watch": "yarn test:unit -- -w",
     "build": "rm -rf lib && mkdir lib && babel src --out-dir lib",
     "prettier": "find . -name \"*.js\" | grep -v -f .eslintignore | xargs prettier --write",
-    "version": "npm run build && pkgfiles"
+    "pkg": "npm run build && pkgfiles && yarn version"
   },
   "repository": {
     "type": "git",
