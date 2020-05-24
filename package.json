@@ -10,7 +10,7 @@
     "test:watch": "yarn test:unit -- -w",
     "build": "rm -rf lib && mkdir lib && babel src --out-dir lib",
     "prettier": "find . -name \"*.js\" | grep -v -f .eslintignore | xargs prettier --write",
-    "pkg": "npm run build && pkgfiles && yarn version"
+    "pkg": "npm run build && pkgfiles"
   },
   "repository": {
     "type": "git",
