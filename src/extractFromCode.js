@@ -4,6 +4,9 @@ import traverse from '@babel/traverse';
 const noInformationTypes = ['CallExpression', 'Identifier', 'MemberExpression'];
 
 function getKeys(node) {
+  if (!node) {
+    return [null];
+  }
   if (node.type === 'StringLiteral') {
     return [node.value];
   } else if (node.type === 'BinaryExpression' && node.operator === '+') {
