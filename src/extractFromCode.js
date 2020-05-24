@@ -3,13 +3,6 @@ import traverse from '@babel/traverse';
 
 const noInformationTypes = ['CallExpression', 'Identifier', 'MemberExpression'];
 
-function getTranKeys(node) {
-  if (node && node.type === 'StringLiteral') {
-    return node.value;
-  }
-
-  return null;
-}
 function getKeys(node) {
   if (node.type === 'StringLiteral') {
     return [node.value];
@@ -113,18 +106,18 @@ export default function extractFromCode(code, options = {}) {
 
       if ((type === 'Identifier' && name === marker) || path.get('callee').matchesPattern(marker)) {
         const foundKeys = getKeys(
-            keyLoc < 0 ? node.arguments[node.arguments.length + keyLoc] : node.arguments[keyLoc],
+          keyLoc < 0 ? node.arguments[node.arguments.length + keyLoc] : node.arguments[keyLoc],
         );
 
-        const translate = getTranKeys(
-            keyTr < 0 ? node.arguments[node.arguments.length + keyTr] : node.arguments[keyTr],
+        const translate = getKeys(
+          keyTr < 0 ? node.arguments[node.arguments.length + keyTr] : node.arguments[keyTr],
         );
 
         foundKeys.forEach(key => {
           if (key) {
             keys.push({
               key,
-              translate,
+              translate: translate.length > 0 ? translate[0] : null,
               loc: node.loc,
             });
           }
